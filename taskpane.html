@@ -7,12 +7,24 @@
     <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
     <script type="text/javascript">
     </script>
+    <style type='text/css'>
+      /* Search Form */
+       #search_form{
+        margin:0px 0px 8px 0px;
+       }
+        #search_form #find{
+          width:85% !important;
+        }
+        #search_form .button{
+          width: 13% !important;
+        }
+    </style>
   </head>
 
   <body>
-   <form action='' method='get'>
+   <form id='search_form' action='' method='get'>
     <input type='text' name='find' id='find' placeholder='search for...' value=''>
-    <input type='submit' value='search' onclick="search(); alert('7'); return false;">
+    <input type='submit' class='button' value='search' onclick="search(); alert('7'); return false;">
    </form>
 
     <!--p>This add-in will insert the text 'Hello world!'.</p-->
