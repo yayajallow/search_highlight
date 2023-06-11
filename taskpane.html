@@ -5,12 +5,22 @@
   <head>
     <!-- Office JavaScript API -->
     <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+    <script type="text/javascript">
+     function search(){
+      //varaibles
+       var query=null;//query text
+      //
+       //gets the query text
+        query=document.getElementById('find').value;
+        alert(query);
+     }
+    </script>
   </head>
 
   <body>
    <form action='' method='get'>
     <input type='text' name='find' id='find' value=''>
-    <input type='submit' value='search'>
+    <input type='submit' value='search' onclick='search()'>
    </form>
 
     <p>This add-in will insert the text 'Hello world!'.</p>
