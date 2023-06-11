@@ -5,8 +5,6 @@
   <head>
     <!-- Office JavaScript API -->
     <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
-    <script type="text/javascript">
-    </script>
     <style type='text/css'>
       /* Search Form */
        #search_form{
@@ -25,7 +23,7 @@
   <body>
    <div id='search_form' action='' method='get'>
     <input type='text' name='find' id='find' placeholder='search for...' value=''>
-    <input type='submit' id='search_button' class='button' value='search' onclick="search();">
+    <input type='submit' id='search_button' class='button' value='search'>
    </div>
 
     <!--p>This add-in will insert the text 'Hello world!'.</p-->
@@ -41,6 +39,7 @@
         if (info.host === Office.HostType.Word) {
             document.getElementById("helloButton").onclick = sayHello;
             document.getElemenyById("search_button").style.display = 'inline-block';
+            document.getElementById("search_button").onclick = search;
         }
     });
 
@@ -66,7 +65,7 @@
         query=document.getElementById('find').value;
         alert(query);
        //performs the search
-        await Word.run(async(context) => {
+        return Word.run(async(context) => {
           const search=context.document.body.search(query);//searches the document
           search.load('font');//loads the font property value
           await context.sync();//syncs the document
@@ -76,7 +75,7 @@
             //search.items[loop_count].font.bold=true;
             //search.items[loop_count].font.italic=true;
            }
-           await context.sync();//syncs the document
+           return context.sync();//syncs the document
         });
      }
 </script>
