@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+  xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="TaskPaneApp">
+  <Id>C4E304B6-24D2-416B-9BC6-2B4C4D37AEFB</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>Inovking</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="Search and Highlight"/>
+  <Description DefaultValue="search and highlight document text"/>
+  <IconUrl DefaultValue="https://yayajallow.github.io/search_highlight/icon.png"/>
+  <HighResolutionIconUrl DefaultValue="https://yayajallow.github.io/search_highlight/icon.png"/>
+  <SupportUrl DefaultValue="https://localhost:3000/support.html"/>
+  <AppDomains>
+    <AppDomain>https://localhost:3000</AppDomain>
+    <AppDomain>https://yayajallow.github.io/</AppDomain>
+  </AppDomains>
+  <Hosts>
+    <Host Name="Document"/>
+  </Hosts>
+  <DefaultSettings>
+    <SourceLocation DefaultValue="https://yayajallow.github.io/taskpane.html"/>
+  </DefaultSettings>
+  <Permissions>ReadWriteDocument</Permissions>
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <Hosts>
+      <Host xsi:type="Document">
+        <DesktopFormFactor>
+          <GetStarted>
+            <Title resid="GetStarted.Title"/>
+            <Description resid="GetStarted.Description"/>
+            <LearnMoreUrl resid="GetStarted.LearnMoreUrl"/>
+          </GetStarted>
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <OfficeTab id="TabHome">
+              <Group id="CommandsGroup">
+                <Label resid="CommandsGroup.Label"/>
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16x16"/>
+                  <bt:Image size="32" resid="Icon.32x32"/>
+                  <bt:Image size="80" resid="Icon.80x80"/>
+                </Icon>
+                <Control xsi:type="Button" id="TaskpaneButton">
+                  <Label resid="TaskpaneButton.Label"/>
+                  <Supertip>
+                    <Title resid="TaskpaneButton.SupertipTitle"/>
+                    <Description resid="TaskpaneButton.SupertipText"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16"/>
+                    <bt:Image size="32" resid="Icon.32x32"/>
+                    <bt:Image size="80" resid="Icon.80x80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>ButtonId1</TaskpaneId>
+                    <SourceLocation resid="Taskpane.Url"/>
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+    <Resources>
+      <bt:Images>
+        <bt:Image id="Icon.16x16" DefaultValue="https://yayajallow.github.io/search_highlight/icon.png"/>
+        <bt:Image id="Icon.32x32" DefaultValue="https://yayajallow.github.io/search_highlight/icon.png"/>
+        <bt:Image id="Icon.80x80" DefaultValue="https://yayajallow.github.io/search_highlight/icon.png"/>
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://localhost:3000/learn.html"/>
+        <bt:Url id="Taskpane.Url" DefaultValue="https://yayajallow.github.io/search_highlight/taskpane.html"/>
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="GetStarted.Title" DefaultValue="Search and Highlighter"/>
+        <bt:String id="CommandsGroup.Label" DefaultValue="Search and Highlight"/>
+        <bt:String id="TaskpaneButton.Label" DefaultValue="Search"/>
+        <bt:String id="TaskpaneButton.SupertipTitle" DefaultValue="Search and Highlight"/>
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="GetStarted.Description" DefaultValue="Search and Highlight add-in added succesfully. Go to the HOME tab and click the 'Search' button to get started."/>
+        <bt:String id="TaskpaneButton.SupertipText" DefaultValue="Open the Search and Highlight add-in"/>
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+</OfficeApp>
