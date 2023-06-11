@@ -1,0 +1,46 @@
+[
+    {
+      "name": "Search & Highlight Add-In",
+      "reponame": "ya251j-search_highlight",
+      "source": "inovking",
+      "title": "Search & Highlight Text In Your Word Document",
+      "shortDescription": "Searchs Word Document For Requested Query & Highlights It",
+      "url": "http://gatespetterson.com/___apps/search_highlight/__downloads/",
+      "longDescription": [
+        "Searches word document for requested queries and highlights the requested queries"
+      ],
+      "creationDateTime": "2023-06-10",
+      "updateDateTime": "2023-06-10",
+      "products": [
+        "Office"
+      ],
+      "metadata": [
+        {
+          "key": "x_001",
+          "value": "app"
+        }
+      ],
+      "thumbnails": [
+        {
+            "type": "Image",
+            "order": 100,
+            "url": "http://gatespetterson.com/__apps/search_highlight/_assets/icon.png",
+            "alt": "Search Icon"
+          }
+      ],
+      "authors": [
+        {
+          "gitHubAccount": "yayajallow",
+          "pictureUrl": "https://avatars.githubusercontent.com/u/45133548?v=4",
+          "name": "Inovking"
+        }
+      ],
+      "references": [
+        {
+          "name": "Search & Highlight",
+          "description": "Search your word documents for requested queries and highlight requested queries",
+          "url": "http://gatespetterson.com/__apps/search_highlight/__www/"
+        }
+      ]
+    }
+  ] 
