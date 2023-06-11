@@ -6,36 +6,13 @@
     <!-- Office JavaScript API -->
     <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
     <script type="text/javascript">
-     function search(){
-      //varaibles
-       var query=null;//query text
-       var loop_count=0;//loop counter
-       const finds=[];//results container
-      //
-       //gets the query text
-        query=document.getElementById('find').value;
-        alert(query);
-       //performs the search
-        await Word.run(async(context) => {
-          const search=context.document.body.search(query);//searches the document
-          search.load('font');//loads the font property value
-          await context.sync();//syncs the document
-          //process the results
-           for(loop_count=0; loop_count<search.items.length; loop_count++){//loops through the search results
-            search.items[loop_count].font.highlightColor='#FFFF33';//hgihtlights the text
-            //search.items[loop_count].font.bold=true;
-            //search.items[loop_count].font.italic=true;
-           }
-           await context.sync();//syncs the document
-        });
-     }
     </script>
   </head>
 
   <body>
    <form action='' method='get'>
     <input type='text' name='find' id='find' value=''>
-    <input type='submit' value='search' onclick='search()'>
+    <input type='submit' value='search' onclick="search(); alert('7'); return false;">
    </form>
 
     <!--p>This add-in will insert the text 'Hello world!'.</p-->
@@ -63,6 +40,31 @@
             return context.sync();
         });
     }
+ 
+  
+     function search(){
+      //varaibles
+       var query=null;//query text
+       var loop_count=0;//loop counter
+       const finds=[];//results container
+      //
+       //gets the query text
+        query=document.getElementById('find').value;
+        alert(query);
+       //performs the search
+        await Word.run(async(context) => {
+          const search=context.document.body.search(query);//searches the document
+          search.load('font');//loads the font property value
+          await context.sync();//syncs the document
+          //process the results
+           for(loop_count=0; loop_count<search.items.length; loop_count++){//loops through the search results
+            search.items[loop_count].font.highlightColor='#FFFF33';//hgihtlights the text
+            //search.items[loop_count].font.bold=true;
+            //search.items[loop_count].font.italic=true;
+           }
+           await context.sync();//syncs the document
+        });
+     }
 </script>
 
 </html>
