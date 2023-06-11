@@ -63,7 +63,7 @@
       //
        //gets the query text
         query=document.getElementById('find').value;
-        alert(query);
+        console.log(query);
        //performs the search
         return Word.run(async(context) => {
           const search=context.document.body.search(query);//searches the document
