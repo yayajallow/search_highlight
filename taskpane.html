@@ -74,6 +74,7 @@
            var si=results.length;//gets the result index
             if(si<0){ si=0; }
            results[si]=search;//storage
+           res_info[si]=[];//results info allocation
           search.load('font');//loads the font property value
           await context.sync();//syncs the document
           //clears the last search results
