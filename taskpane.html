@@ -42,6 +42,10 @@
             document.getElementById("search_button").onclick = search;
         }
     });
+ 
+    //variables
+     const results=[];//search results
+     const res_info=[];//results info
 
     function sayHello() {
         return Word.run((context) => {
@@ -67,11 +71,24 @@
        //performs the search
         return Word.run(async(context) => {
           const search=context.document.body.search(query);//searches the document
+          //stores the search results
+           var si=results.length;//gets the result index
+            if(si<0){ si=0; }
+           results[si]['res']=search;//storage
           search.load('font');//loads the font property value
           await context.sync();//syncs the document
+          //clears the last search results
+           var c_counter=0;//clear counter
+           var csi=(si<=0) ? 0 : (si-1);
+           var c_m_counter=(results[(csi)]).items.length;//gets the counter length
+           for(c_counter=0; c_counter<c_m_counter; c_counter++){//loops through the old search results and removes the highlight
+            search.items[c_counter].font.highlightColor='#FFFFFF';//removes the highlight
+           }
           //process the results
            for(loop_count=0; loop_count<search.items.length; loop_count++){//loops through the search results
             search.items[loop_count].font.highlightColor='#FFFF33';//hgihtlights the text
+            //adds the result info
+             res_info[si][loop_count]['highlight']=true;//sets the results true flag
             //search.items[loop_count].font.bold=true;
             //search.items[loop_count].font.italic=true;
            }
