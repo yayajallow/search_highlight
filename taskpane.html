@@ -67,7 +67,6 @@
       //
        //gets the query text
         query=document.getElementById('find').value;
-        console.log(query);
        //performs the search
         return Word.run(async(context) => {
           const search=context.document.body.search(query);//searches the document
@@ -84,6 +83,10 @@
            for(c_counter=0; c_counter<c_m_counter; c_counter++){//loops through the old search results and removes the highlight
             search.items[c_counter].font.highlightColor='#FFFFFF';//removes the highlight
            }
+           //
+            console.log(results);
+            console.log(res_info);
+            console.log(c_counter+' | '+csi+' | '+c_m_counter);
           //process the results
            for(loop_count=0; loop_count<search.items.length; loop_count++){//loops through the search results
             search.items[loop_count].font.highlightColor='#FFFF33';//hgihtlights the text
