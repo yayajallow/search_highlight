@@ -6,6 +6,13 @@
     <!-- Office JavaScript API -->
     <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
     <style type='text/css'>
+      /* Dropdown */
+       .dropdown{
+       }
+         .dropdown:hover ul{ display:inline-block; }
+        .dropdown ul{
+         display:none;
+        }
       /* Search Form */
        #search_form{
         margin:0px 0px 8px 0px;
@@ -25,12 +32,27 @@
     <input type='text' name='find' id='find' placeholder='search for...' value=''>
     <input type='submit' id='search_button' class='button' value='search'>
    </div>
+   <div id='options' class='op'>
+    <div id='color_box' class='color_bx'>
+     <li id='color_hub' class='dropdown'>
+      <div id='color_show_box' class='show_bx'>&nbsp;</div>
+      <div id='color_show_text' class='show_text'>Yellow</div>
+      <ul id='color_list' class='list'>
+       <li><div class='color_box'>&nbsp;</div> <div class='color_text'>Yellow</div></li>
+      </ul>
+     </li>
+    </div>
+    <div id='clear' class='clear'>
+     <li id='clear_dd' class='dropdown'>
+      <button id='clear_button'>clear</button>
+      <ul id='clear_dd_list' class='list'>
+       <li>[last query]<li>
+      </ul>
+     </li>
+    </div>
+   </div>
 
-    <!--p>This add-in will insert the text 'Hello world!'.</p-->
     <button id="helloButton">say hi</button>
-
-    <!-- The following image URL tracks diagnostic data for this sample add-in. Please remove the image tag if you reuse this sample in your own code project. -->
-    <img src="https://pnptelemetry.azurewebsites.net/pnp-officeaddins/samples/word-add-in-hello-world-run" />
 </body>
 
 <script>
