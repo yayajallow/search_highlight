@@ -22,8 +22,9 @@
          position: absolute;
          margin-left:-40px;
         }
-         .dropdown ul.li{
-          display:block;
+         .dropdown ul li{
+          display:block !important;
+          margin:1px 0px;
          }
       /* Options */
        .op{
@@ -71,18 +72,18 @@
       <div id='color_show_box' class='show_bx'>&nbsp;</div>
       <div id='color_show_text' class='show_text'>Yellow</div>
       <ul id='color_list' class='list'>
-       <li><div id='color_brown' class='preview' style='background-color:#A52A2A; !important;' hex='A52A2A' rgb='165,42,42'>&nbsp;</div> <div class='color_text'>Brown</div></li>
-       <li><div id='color_black' class='preview' style='background-color:#000000; !important;' hex='000000' rgb='0,0,0'>&nbsp;</div> <div class='color_text'>Black</div></li>
-       <li><div id='color_blue' class='preview' style='background-color:#0000FF; !important;' hex='0000FF' rgb='0,0,255'>&nbsp;</div> <div class='color_text'>Blue</div></li>
-       <li><div id='color_cyan' class='preview' style='background-color:#00FFFF; !important;' hex='00FFFF' rgb='0,255,255'>&nbsp;</div> <div class='color_text'>Cyan</div></li>
-       <li><div id='color_gray' class='preview' style='background-color:#808080; !important;' hex='808080' rgb='128,128,128'>&nbsp;</div> <div class='color_text'>Gray</div></li>
-       <li><div id='color_green' class='preview' style='background-color:#008000; !important;' hex='008000' rgb='0,128,0'>&nbsp;</div> <div class='color_text'>Green</div></li>
-       <li><div id='color_orange' class='preview' style='background-color:#FFA500; !important;' hex='FFA500' rgb='255,165,0'>&nbsp;</div> <div class='color_text'>Orange</div></li>
-       <li><div id='color_pink' class='preview' style='background-color:#FFC0CB; !important;' hex='FFC0CB' rgb='255,192,203'>&nbsp;</div> <div class='color_text'>Pink</div></li>
-       <li><div id='color_purple' class='preview' style='background-color:#800080; !important;' hex='800080' rgb='128,0,128'>&nbsp;</div> <div class='color_text'>Purple</div></li>
-       <li><div id='color_red' class='preview' style='background-color:#FF0000; !important;' hex='FF0000' rgb='255,0,0'>&nbsp;</div> <div class='color_text'>Red</div></li>
-       <li><div id='color_yellow' class='preview' style='background-color:#FFFF00; !important;' hex='FFFF00' rgb='255,255,0'>&nbsp;</div> <div class='color_text'>Yellow</div></li>
-       <li><div id='color_white' class='preview' style='background-color:#FFFFFF; !important;' hex='FFFFFF' rgb='255,255,255'>&nbsp;</div> <div class='color_text'>White</div></li>
+       <li><div id='color_brown' class='preview' style='background-color:#A52A2A; !important;' hex='A52A2A' rgb='165,42,42'>&nbsp;</div> <div class='color_text'><a onclick='setColor({'color':'brown'});'>Brown</a></div></li>
+       <li><div id='color_black' class='preview' style='background-color:#000000; !important;' hex='000000' rgb='0,0,0'>&nbsp;</div> <div class='color_text'><a onclick='setColor({'color':'black'});'>Black</a></div></li>
+       <li><div id='color_blue' class='preview' style='background-color:#0000FF; !important;' hex='0000FF' rgb='0,0,255'>&nbsp;</div> <div class='color_text'><a onclick='setColor({'color':'blue'});'>Blue</a></div></li>
+       <li><div id='color_cyan' class='preview' style='background-color:#00FFFF; !important;' hex='00FFFF' rgb='0,255,255'>&nbsp;</div> <div class='color_text'><a onclick='setColor({'color':'cyan'});'>Cyan</a></div></li>
+       <li><div id='color_gray' class='preview' style='background-color:#808080; !important;' hex='808080' rgb='128,128,128'>&nbsp;</div> <div class='color_text'><a onclick='setColor({'color':'gray'});'>Gray</a></div></li>
+       <li><div id='color_green' class='preview' style='background-color:#008000; !important;' hex='008000' rgb='0,128,0'>&nbsp;</div> <div class='color_text'><a onclick='setColor({'color':'green'});'>Green</a></div></li>
+       <li><div id='color_orange' class='preview' style='background-color:#FFA500; !important;' hex='FFA500' rgb='255,165,0'>&nbsp;</div> <div class='color_text'><a onclick='setColor({'color':'orange'});'>Orange</a></div></li>
+       <li><div id='color_pink' class='preview' style='background-color:#FFC0CB; !important;' hex='FFC0CB' rgb='255,192,203'>&nbsp;</div> <div class='color_text'><a onclick='setColor({'color':'pink'});'>Pink</a></div></li>
+       <li><div id='color_purple' class='preview' style='background-color:#800080; !important;' hex='800080' rgb='128,0,128'>&nbsp;</div> <div class='color_text'><a onclick='setColor({'color':'purple'});'>Purple</a></div></li>
+       <li><div id='color_red' class='preview' style='background-color:#FF0000; !important;' hex='FF0000' rgb='255,0,0'>&nbsp;</div> <div class='color_text'><a onclick='setColor({'color':'red'});'>Red</a></div></li>
+       <li><div id='color_yellow' class='preview' style='background-color:#FFFF00; !important;' hex='FFFF00' rgb='255,255,0'>&nbsp;</div> <div class='color_text'><a onclick='setColor({'color':'yellow'});'>Yellow</a></div></li>
+       <li><div id='color_white' class='preview' style='background-color:#FFFFFF; !important;' hex='FFFFFF' rgb='255,255,255'>&nbsp;</div> <div class='color_text'><a onclick='setColor({'color':'white'});'>White</a></div></li>
       </ul>
      </li>
     </div>
@@ -110,6 +111,7 @@
     });
  
     //variables
+     var highlight_color='FFFF00';//highlight color - defaults to yellow
      const results=[];//search results
      const res_info=[];//results info
 
@@ -148,7 +150,7 @@
            var csi=(si<=0) ? 0 : (si-1);
            var c_m_counter=(results[(csi)]).items.length;//gets the counter length
            for(c_counter=0; c_counter<c_m_counter; c_counter++){//loops through the old search results and removes the highlight
-            search.items[c_counter].font.highlightColor='#FFFFFF';//removes the highlight
+            search.items[c_counter].font.highlightColor='#' + highlight_color;//removes the highlight
            }
            //
             console.log(results);
@@ -159,6 +161,7 @@
             search.items[loop_count].font.highlightColor='#FFFF33';//hgihtlights the text
             //adds the result info
              //res_info[si][loop_count]['highlight']=true;//sets the results true flag
+             console.log(res_info[si][loop_count];
             //search.items[loop_count].font.bold=true;
             //search.items[loop_count].font.italic=true;
            }
