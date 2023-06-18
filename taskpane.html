@@ -228,8 +228,9 @@
            for(loop_count=0; loop_count<search.items.length; loop_count++){//loops through the search results
             search.items[loop_count].font.highlightColor='#'+hl_color;//hgihtlights the text
             //adds the result info
-             res_info[si][loop_count][1]=true;//sets the results true flag
-             res_info[si][loop_count][2]=hl_color;//sets the results true flag
+             res_info[si][loop_count]=[ true, 1, hl_color ];
+              //res_info[si][loop_count][1]=true;//sets the results true flag
+              //res_info[si][loop_count][2]=hl_color;//sets the results true flag
              console.log(res_info[si][loop_count]);
             //adds the search to the clear list
              tracker({ index:loop_count, query:query, obj:'add_clear' });
