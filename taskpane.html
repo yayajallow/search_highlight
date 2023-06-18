@@ -139,14 +139,17 @@
       var rgb=attrs.rgb;//color rgb
       var alpha=attrs.alpha;//color rgb alpha
      //
-      //attempts to get the color hex
+      //attempts to get the color hex & rgb
        var h_color=document.getElementById('color_'+color).getAttribute('hex');//gets the hex color
        var rgb_color=document.getElementById('color_'+color).getAttribute('rgb');//gets the hex color
       //changes the color
        highlight_color='#' + h_color;//attemps to change the highlight color
+       var color_name_upper=color.toUpperCase();
        //changes the color display box
         document.getElementById('color_show_box').setAttribute('style','background-color: #'+h_color+' !important;');
-        document.getElementById('color_show_text').innerHTML=color.toUpperCase;
+        document.getElementById('color_show_text').innerHTML=color_name_upper;
+       //changes the highlight color
+        highlight_color=h_color;
     }
   
      function search(){
