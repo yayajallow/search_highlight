@@ -97,7 +97,7 @@
      <li id='clear_dd' class='dropdown'>
       <button id='clear_button'>clear</button>
       <ul id='clear_dd_list' class='list'>
-       
+       <li id='clear_all' onclick='clear_dx({ all:true })'>clear all</li>
       </ul>
      </li>
     </div>
@@ -130,6 +130,44 @@
             // sync the context to run the previous API call, and return.
             return context.sync();
         });
+    }
+
+    function tracker(attrs){
+     //vars
+      var obj=(attrs.obj) || (attrs.objective) || null;
+     //
+      //checks the objective
+       if(obj=='add_clear'){//adds a search to the clear list
+        //vals
+         var res_index=(attrs.result) || (attrs.result_index) || (attrs.index) || null;//result index
+         var srh_query=(attrs.search) || (attrs.query) || null;//search query
+          var srh_query_c=srh_query.replace("'", "\'");//text sterilization
+         var add_already=document.getElementById('clear_dx_'+srh_query_c).getAttribute('set');
+        //
+         //checks if the query was already added
+          if(add_already===null){
+           //builds the clearage link
+            var cur_doc=document.getElementById('clear_dd_list').innerHTML;//gets the clear list content
+            var new_clear="<li><a id='clear_dx_'+srh_query_c+'' set='1' href='' onclick='clear_dx({ index:\''+res_index+'\' });'>'+srh_query+'</a></li>";
+            var new_doc=cur_doc + new_clear;//appends the new clear link to the clear list
+            //adds the clearage link
+             document.getElementById('clear_dd_list').innerHTML = new_doc;//updates the clear list
+          }
+       }
+    }
+
+    function clear_dx(attrs){//clears searches
+     //vars
+      var all=(attrs.all) || (attrs.clear_all) || (attrs['clear all']) || null;//clear all flag
+      var index=(attrs.index) || (attrs.result) || (attrs.result_index) || (attrs['result index']) || (attrs.res_index) || (attrs['res index']) || null;//result index
+     //checks what to do
+      if(all===true){//if all highlight are to be cleared
+       
+      }
+      else{//regular individual clearance
+       if(index!=null){//if a non-empty index has been provided
+       }
+      }
     }
  
     function setColor(attrs){
@@ -182,16 +220,15 @@
             search.items[c_counter].font.highlightColor='#' + highlight_color;//removes the highlight
            }
            //
-            console.log(results);
-            console.log(res_info);
-            console.log(c_counter+' | '+csi+' | '+c_m_counter);
           //process the results
            for(loop_count=0; loop_count<search.items.length; loop_count++){//loops through the search results
-            search.items[loop_count].font.highlightColor='#FFFF33';//hgihtlights the text
+            search.items[loop_count].font.highlightColor='#'+highlight_color;//hgihtlights the text
             //adds the result info
-             //res_info[si][loop_count][1]=true;//sets the results true flag
-             //res_info[si][loop_count][2]=hl_color;//sets the results true flag
+             res_info[si][loop_count][1]=true;//sets the results true flag
+             res_info[si][loop_count][2]=hl_color;//sets the results true flag
              console.log(res_info[si][loop_count]);
+            //adds the search to the clear list
+             tracker({ index:loop_count, query:query, obj:'add_clear' });
             //search.items[loop_count].font.bold=true;
             //search.items[loop_count].font.italic=true;
            }
