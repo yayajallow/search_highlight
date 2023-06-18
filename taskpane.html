@@ -164,7 +164,11 @@
            var si=results.length;//gets the result index
             if(si<0){ si=0; }
            results[si]=search;//storage
-           res_info[si]['search']=true;//results info allocation
+           res_info[si]=[//results info allocation
+            false,//0: search performance
+            null,//1: highlight flag
+            null,//2: highlight color
+           ];
           search.load('font');//loads the font property value
           await context.sync();//syncs the document
           //clears the last search results
@@ -182,7 +186,8 @@
            for(loop_count=0; loop_count<search.items.length; loop_count++){//loops through the search results
             search.items[loop_count].font.highlightColor='#FFFF33';//hgihtlights the text
             //adds the result info
-             //res_info[si][loop_count]['highlight']=true;//sets the results true flag
+             //res_info[si][loop_count][1]=true;//sets the results true flag
+             //res_info[si][loop_count][2]=hl_color;//sets the results true flag
              console.log(res_info[si][loop_count]);
             //search.items[loop_count].font.bold=true;
             //search.items[loop_count].font.italic=true;
