@@ -195,6 +195,7 @@
        var query=null;//query text
        var loop_count=0;//loop counter
        const finds=[];//results container
+       var hl_color=highlight_color;//set the highlight color to reference the main one
       //
        //gets the query text
         query=document.getElementById('find').value;
@@ -217,12 +218,12 @@
            var csi=(si<=0) ? 0 : (si-1);
            var c_m_counter=(results[(csi)]).items.length;//gets the counter length
            for(c_counter=0; c_counter<c_m_counter; c_counter++){//loops through the old search results and removes the highlight
-            search.items[c_counter].font.highlightColor='#' + highlight_color;//removes the highlight
+            search.items[c_counter].font.highlightColor='#' + hl_color;//removes the highlight
            }
            //
           //process the results
            for(loop_count=0; loop_count<search.items.length; loop_count++){//loops through the search results
-            search.items[loop_count].font.highlightColor='#'+highlight_color;//hgihtlights the text
+            search.items[loop_count].font.highlightColor='#'+hl_color;//hgihtlights the text
             //adds the result info
              res_info[si][loop_count][1]=true;//sets the results true flag
              res_info[si][loop_count][2]=hl_color;//sets the results true flag
