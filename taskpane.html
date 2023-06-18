@@ -142,7 +142,9 @@
          var res_index=(attrs.result) || (attrs.result_index) || (attrs.index) || null;//result index
          var srh_query=(attrs.search) || (attrs.query) || null;//search query
           var srh_query_c=srh_query.replace("'", "\'");//text sterilization
-         var add_already=document.getElementById('clear_dx_'+srh_query_c).getAttribute('set');
+         var add_exists=document.getElementById('clear_dx_'+srh_query_c);
+         var add_already=null;//
+          if(add_exists!=null){ var add_check=add_exists.getAttribute('set'); if(add_check==1){ add_already=true; } }
         //
          //checks if the query was already added
           if(add_already===null){
