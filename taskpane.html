@@ -155,7 +155,7 @@
           if(add_already===null){
            //builds the clearage link
             var cur_doc=document.getElementById(fx_box).innerHTML;//gets the clear list content
-            var new_clear=el_start+"<a id='clear_dx_"+srh_query_c+"' set='1' href='' onclick='clear_dx({ index:\''+res_index+'\' });'>"+srh_query+"</a>"+el_end;
+            var new_clear=el_start+"<a id='clear_dx_"+srh_query_c+"' set='1' onclick='clear_dx({ index:\''+res_index+'\' });'>"+srh_query+"</a>"+el_end;
             var new_doc=cur_doc + new_clear;//appends the new clear link to the clear list
             //adds the clearage link
              document.getElementById(fx_box).innerHTML = new_doc;//updates the clear list
