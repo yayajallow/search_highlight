@@ -221,6 +221,9 @@
            ];
           search.load('font');//loads the font property value
           await context.sync();//syncs the document
+          //adds the search to the search & clear list
+           tracker({ index:loop_count, query:query, obj:'add_clear' });
+           tracker({ index:loop_count, query:query, obj:'add_search' });
           //clears the last search results
            var c_counter=0;//clear counter
            var csi=(si<=0) ? 0 : (si-1);
@@ -237,8 +240,6 @@
               //res_info[si][loop_count][1]=true;//sets the results true flag
               //res_info[si][loop_count][2]=hl_color;//sets the results true flag
              console.log(res_info[si][loop_count]);
-            //adds the search to the clear list
-             tracker({ index:loop_count, query:query, obj:'add_clear' });
             //search.items[loop_count].font.bold=true;
             //search.items[loop_count].font.italic=true;
            }
