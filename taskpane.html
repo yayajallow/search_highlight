@@ -103,6 +103,8 @@
     </div>
    </div>
 
+   <div id='search_list'></div>
+
     <button id="helloButton" style='margin-top:15px;'>say hi</button>
 </body>
 
@@ -137,7 +139,7 @@
       var obj=(attrs.obj) || (attrs.objective) || null;
      //
       //checks the objective
-       if(obj=='add_clear'){//adds a search to the clear list
+       if(obj=='add_clear'||obj=='add_search'){//adds a search to the clear list
         //vals
          var res_index=(attrs.result) || (attrs.result_index) || (attrs.index) || null;//result index
          var srh_query=(attrs.search) || (attrs.query) || null;//search query
@@ -145,15 +147,18 @@
          var add_exists=document.getElementById('clear_dx_'+srh_query_c);
          var add_already=null;//
           if(add_exists!=null){ var add_check=add_exists.getAttribute('set'); if(add_check==1){ add_already=true; } }
+         var fx_box=null; var el_start=null; var el_end=null;//focus box, start & end element tags
+          if(obj=='add_search'){ fx_box='search_list'; el_start='<div>'; el_end='</div>'; }
+          else{ fx_box='clear_dd_list'; el_start='<li>'; el_end='</li>'; }
         //
          //checks if the query was already added
           if(add_already===null){
            //builds the clearage link
-            var cur_doc=document.getElementById('clear_dd_list').innerHTML;//gets the clear list content
-            var new_clear="<li><a id='clear_dx_'+srh_query_c+'' set='1' href='' onclick='clear_dx({ index:\''+res_index+'\' });'>'+srh_query+'</a></li>";
+            var cur_doc=document.getElementById(fx_box).innerHTML;//gets the clear list content
+            var new_clear=el_start+"<a id='clear_dx_"+srh_query_c+"' set='1' href='' onclick='clear_dx({ index:\''+res_index+'\' });'>"+srh_query+"</a>"+el_end;
             var new_doc=cur_doc + new_clear;//appends the new clear link to the clear list
             //adds the clearage link
-             document.getElementById('clear_dd_list').innerHTML = new_doc;//updates the clear list
+             document.getElementById(fx_box).innerHTML = new_doc;//updates the clear list
           }
        }
     }
