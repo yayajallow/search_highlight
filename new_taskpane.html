@@ -158,9 +158,14 @@
        </li>
       </div>
      </div>
-
-    <!-- search list -->
-     <div id='search_list'></div>
+    
+    <!-- fields -->
+     <div id='fields'>
+      <!-- error box -->
+       <div id='error_box'></div>
+      <!-- search list -->
+       <div id='search_list'></div>
+     </div>
 
     <button id="helloButton" style='margin-top:15px;'>say hi</button> <!-- hello world button -->
    </body>
@@ -356,12 +361,15 @@
          }
        };
       //
+       //colors
+        var chosen_colors={ 'list':{}, 'search_list':{}, '_info':{} };//chosen color object
        //highlight info
         var highlight_color=defaults.highlight_color;
         var highlight_name=defaults.highlight_color_name;
        //search variables
-        const results=[];//search result array
-        const results_info=[];//search results info
+        var queries={};//search list
+        const results={};//search result object
+        const results_info={};//search results info object
 
      //pre-s
       //color
@@ -422,9 +430,9 @@
                   else if(ibx_cnt===((color_groups_n_name[main_color_name].length)-1)){ fl_selector='last_box'; }
                  color_boxes+="<div";
                   color_boxes+=" id='color_line_"+main_color_name+"_"+sel_color_name+"' style='background-color:#"+sel_color_hex+";' alt='"+sel_color_oname+"'";
-                  color_boxes+=" onmouseover='set({ \"obj\":\"preview_color\", \"color\":\""+sel_color_hex+"\", \"color_name\":\""+sel_color_oname+"\" })'";
-                  color_boxes+=" onmouseout='set({ \"obj\":\"preview_default_color\" })'";
-                  color_boxes+=' onclick=\' set({ "obj":"color_change", "color":"'+sel_color_hex+'", "color_name":"'+sel_color_oname+'" }) \'';
+                  color_boxes+=" onmouseover='_colors({ \"obj\":\"set\", \"type\":\"preview\", \"do\":\"change\", \"color\":\""+sel_color_hex+"\", \"color_name\":\""+sel_color_oname+"\" })'";
+                  color_boxes+=" onmouseout='_colors({ \"obj\":\"set\", \"type\":\"preview\", \"do\":\"default\" })'";
+                  color_boxes+=' onclick=\' _colors({ "obj":"set", "type":"highlight", "do":"change", "color":"'+sel_color_hex+'", "color_name":"'+sel_color_oname+'" }) \'';
                   color_boxes+=" class='color_line_box "+fl_selector+"'>";
                  color_boxes+="</div>";
                }
@@ -439,15 +447,90 @@
        function _colors(attrs){//library color handler
         //variables
          var obj=(attrs.obj) || (attrs.objective) || null;//objective
+         var _do=(attrs.do) || null;//secondary objective
         //
          //checks what the objective is
           if(obj=='set'||obj=='set_colors'||obj=='set colors'){//sets the highlight color
            //var
-            var s_area=(attrs['set area']) || (attrs['set_area']) || null;//set area - the type of setting that is occurring
+            var s_area=(attrs['set area']) || (attrs['set_area']) || (attrs['area']) || null;//set area - the type of setting that is occurring
+            var s_type=(attrs['set type']) || (attrs['set_type']) || (attrs['type']) || null;//set type
+            var s_color=(attrs.color) || null;//color to set
+            var s_color_name=(attrs.color_name) || (attrs['color name']) || null;//color name
+            var s_color_type=(attrs.color_type) || (attrs['color type']) || null;//the color type (hex or rgb)
+           //
+            //sets the color type if non set
+             if(s_color_type==null && s_color!=null){
+              var ct_search=s_color.search(',');//searches for the rgb spliter
+              if(ct_search==-1){//if a rgb value isn't provided
+               if(typeof(s_color)=='string'){
+                ct_search=s_color.length;//gets the string length
+                if(ct_search==6){ s_color_type='hex'; }//sets the color type to hex
+               }
+              }
+              else{ s_color_type='rgb'; }
+             }
+            //attempts to pull the color
+             if(s_color==null){//if no color is provided
+              var do_search=_do.search('default');
+              if(do_search==-1||do_search===null){//if a default action isn't set
+              }
+             }
            //checks the objective
-            if(s_type=='highlight'){//changes the highlight color
+            if(s_type=='chosen'){//chosen color
+             //vars
+              var c_color=(attrs['chosen_color']) || (attrs['chosen color']) || (attrs['chosen']) || (attrs['color']) || null;//chosen color name
+             //
+              //checks what to do
+               if(_do=='add'){//adds the chosen color
+                var _already=(chosen_colors.list[(c_color)]===1) ? true : false;//checks if the color has already been added
+                //adds the color to the list
+                 if(_already===false){//if the color wasn't already added
+                  chosen_color.list[(c_color)]=1;
+                 }
+               }
+            }
+            else if(s_type=='highlight'){//changes the highlight color
+             //vars
+             //checks what to do
+              if(_do!=null){
+               if(_do=='change'){//changes the highlight color
+                if(s_color!=null && s_color_name!=null){
+                 var n_hl_color=(s_color_type=='rgb') ? 'rgb('+s_color+')' : s_color;//new highlight color
+                 //changes the highlight color
+                  highlight_color=s_color;//highlight color
+                  highlight_name=s_color_name;//highlight color name
+                }
+               }
+               else if(_do=='default_color'||_do=='default color'){//changes the highlight color to the default color
+                //changes the highlight color to the default
+                 highlight_color=defaults.highlight_color;
+                 highlight_name=defaults.highlight_color_name;
+               }
+                else if(_do=='change_default'||_do=='change default'){//changes the default highlight color
+                }
+              }
+               else{}
             }
             else if(s_type=='preview'){//sets the preview color
+             //vars
+              var rVh=(s_color_type=='rgb') ? 'rgba(' : '#';//start of the rgba or hex
+              var rVhE=(s_color_type=='rgb') ? ',1)' : '';//end of the rgba or hex
+             //checks what to do
+              if(_do!=null){
+               if(_do=='change'){//changes the highlight color
+                if(s_color!=null && s_color_name!=null){//if the color and color name are not empty
+                 document.getElementById('color_selector_box').setAttribute('style','background-color:'+rVh+s_color+rVhE+';');//changes the preview box color
+                 document.getElementById('color_selector_name').innerHTML = s_color_name;//changes the preview color name
+                }
+               }
+               else if(_do=='default_color'||_do=='default color'||_do=='default'){//changes the preview to the default color
+                //if(s_color!=null && s_color_name!=null){//if the color and color name are not empty
+                 document.getElementById('color_selector_box').setAttribute('style','background-color:'+rVh+highlight_color+rVhE+';');//changes the preview box color
+                 document.getElementById('color_selector_name').innerHTML = highlight_name;//changes the preview color name
+                //}
+               }
+              }
+               else{}
             }
           }
        }
@@ -460,15 +543,69 @@
           if(obj=='clear'){//clearance task
            //vars
             var c_obj=(attrs['clear objective']) || (attrs['clear obj']) || (attrs['clear_objective']) || (attrs['clear_obj']) || null;//clear objective
+           //checks the clear objective
+            if(c_obj!=null){
+             if(c_obj=='add'||(c_obj=='add_clear'||c_obj=='add clear')||(c_obj=='add_search'||c_obj=='add search')){//adds the search ot the clear list
+              //vars
+               var query_id=(attrs['query id']) || (attrs.query_id) || null;//search query id
+               var query_text=(attrs['query text']) || (attrs.query_text) || (attrs.query) || null;//query text
+               var c_query_text=query_text.replace('"', '\"');//steralizes the query text
+               var add_exists=null;//determines if the list item was already added
+               var ci_html=null;//clear item html
+               var clear_box_id='clear_dd_list';//clear dropdown box id
+              //
+               //pres
+                if(query_id==null && query_text!=null){//attempts to get the query id from the text if none provided
+                 g_qid=queries[(query_text)];//attempts to get the query id
+                 query_id=( (g_qid!=null||(g_qid===0)) ) ? g_qid : query_id;//sets the query id
+                }
+                if(add_exists==null){//checks if the list item was already added
+                 if( (document.getElementById('clear_item_'+query_id))!=null ){
+                  var clear_item=document.getElementById('clear_item_'+query_id);
+                  add_exists=( (clear_item.getAttribute('set'))==1 ) ? true : false;//checks if the item was already added
+                 } else{ add_exists=false; }//if the item doesn't exists
+                }
+               //attempts to add to the clear list
+                if(add_exists==false){//if the item wasn't already added
+                 //builds the clear item list
+                  ci_html="<li>";//list item start
+                   ci_html+="<a id='clear_item_"+query_id+"' set='1' onclick=' _task({ \"obj\":\"clear\", \"clear obj\":\"remove\", \"query_id\":\""+query_id+"\", \"query_text\":\""+c_query_text+"\" }) '>"+query_text+"</a>";
+                  ci_html+="</li>";//list item end
+                 //adds the clear item html
+                  var clear_list=document.getElementById(clear_box_id).innerHTML+ci_html;
+                  document.getElementById(clear_box_id).innerHTML=clear_list;
+                }
+             }
+             else if(c_obj=='clear'||c_obj=='delete'||c_obj=='remove'){//removes the search & highlight
+              //vars
+               var _all=(attrs['all']) || false;//determines if to removes all search & highlight
+              //
+               if(_all!=false){//if all searches & highlight to be removed
+               }
+               else{//individual removal
+               }
+             }
+            }
           }
-          else if(obj=='list_add'){//adds items to the search or clear list
+          else if(obj=='search'){//search related
            //vars
+            var s_obj=(attrs['search objective']) || (attrs['search obj']) || (attrs['set_objective']) || (attrs['search_obj']) || (attrs['search_objective']) || null;//set objective
+           //
           }
           else if(obj=='set'){//set task
            //vars
-            var s_obj=(attrs['set objective']) || (attrs['set obj']) || (attrs['set_objective']) || (attrs['set_obj']) || null;//set objective
+            var s_obj=(attrs['set objective']) || (attrs['set obj']) || (attrs['set_objective']) || (attrs['set_obj']) || (attrs['set_objective']) || null;//set objective
            //
             //checks the set objective
+             if(s_obj!=null){//if a set objective is set
+              if(s_obj==''){
+              }
+              else if(s_obj==''){
+              }
+              else if(s_obj==''){
+              }
+             }
+             else{ }
           }
        }
       
@@ -479,7 +616,36 @@
          var query=null;//search query
          const finds=[];//results container
         //
-         //
+         //performs the search
+          query=document.getElementById('find').value;//gets the query text
+          //
+           retrun Word.run(async(context) => {
+            //vars
+             var results_count=0;//results count
+             var result_index=(results.length<=0) ? 0 : results_length+1;//result index
+             var query_id=null;//query storage id
+            //
+             const search=context.document.body.search(query);//searches the document for the query text
+             //storage
+              //stores the search results
+               results_count=results.length; if(results_count<=0){ results_count=0; }//stores the results count
+               results[results_index]=search;//stores the search object in the results object
+               //stores the results info
+                results_info[results_index].results=results_count;//stores the results counts
+                results_info[results_index].searched=true;//stores the searched flag
+                //stores the highlight info
+                 results_info[results_index].highlight.color=highlight_color;
+                 results_info[results_index].highlight.name=highlight_name;
+              //stores the query info
+             search.load('font');//loads the font property
+             await context.sync();//syncs the document
+             //
+              //gets the query id
+              //tracker task
+               _task({ 'obj':'clear', 'clear obj':'add', 'query_id':query_index, 'query':query });//adds the search to the clear list
+               _task({ 'obj':'search', 'clear obj':'add', 'query_id':query_index, 'query':query });//adds the search to the search list
+            return context.sync();//syncs the document
+           });
        }
 
       //test function
