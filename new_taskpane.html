@@ -617,6 +617,7 @@
          var h_color=highlight_color;//highlight color reference
          var query=null;//search query
          const finds=[];//results container
+         var un_highlight=(attrs['unhighlight']) || (attrs['un']) || null;
         //
          //performs the search
           query=document.getElementById('find').value;//gets the query text
@@ -626,26 +627,52 @@
              var results_count=0;//results count
              var result_index=(results.length<=0) ? 0 : results_length+1;//result index
              var query_id=null;//query storage id
+             var loop_counter=0;//loop counter
             //
              const search=context.document.body.search(query);//searches the document for the query text
-             //storage
-              //stores the search results
-               results_count=results.length; if(results_count<=0){ results_count=0; }//stores the results count
-               results[results_index]=search;//stores the search object in the results object
-               //stores the results info
-                results_info[results_index].results=results_count;//stores the results counts
-                results_info[results_index].searched=true;//stores the searched flag
-                //stores the highlight info
-                 results_info[results_index].highlight.color=highlight_color;
-                 results_info[results_index].highlight.name=highlight_name;
-              //stores the query info
+             //determines what to do
+              if(un_highlight==1){//unhighlighting process
+              }
+              else{//regular highlight process
+               //storage
+                //stores the search results
+                 results_count=results.length; if(results_count<=0){ results_count=0; }//stores the results count
+                 results[results_index]=search;//stores the search object in the results object
+                 //stores the results info
+                  results_info[results_index].results=results_count;//stores the results counts
+                  results_info[results_index].searched=true;//stores the searched flag
+                  //stores the highlight info
+                   results_info[results_index].highlight.color=highlight_color;
+                   results_info[results_index].highlight.name=highlight_name;
+                //stores the query info
+                 var query_count=queries.length; if(query_count<=0||query_count==null){ query_count=0; }//gets the query lenght
+                 var query_index=(query_count==0) ? 0 : query_count;//gets the current query count id
+                 queries[(query)]=query_index;//stores the current query count & text
+                  console.log(queries);
+              }
              search.load('font');//loads the font property
              await context.sync();//syncs the document
              //
-              //gets the query id
               //tracker task
-               _task({ 'obj':'clear', 'clear obj':'add', 'query_id':query_index, 'query':query });//adds the search to the clear list
-               _task({ 'obj':'search', 'clear obj':'add', 'query_id':query_index, 'query':query });//adds the search to the search list
+               if(un_highlight==1){//unhighlight
+               }
+               else{//highlight
+                _task({ 'obj':'clear', 'clear obj':'add', 'query_id':query_index, 'query':query });//adds the search to the clear list
+                _task({ 'obj':'search', 'clear obj':'add', 'query_id':query_index, 'query':query });//adds the search to the search list
+               }
+              //process the results & highlights the text
+               for(loop_counter=0; loop_counter<search.items.length; loop_counter++){//loops through results
+                //highlights or unhighlights the text
+                 if(un_highlight==1){//unhighlights the text
+                 }
+                 else{//highlights the text
+                  search.items[loop_counter].font.highlightColor=h⁬ighlight_text;//highlights the text
+                  //stores the highlight info
+                   results_info[results_index].highlight.is=true;
+                   results_info[results_index].highlight.color=highlight_color;
+                   results_info[results_index].highlight.name=highlight_name;
+                 }
+               }
             return context.sync();//syncs the document
            });
        }
