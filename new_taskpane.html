@@ -639,7 +639,7 @@
               else{//regular highlight process
                //storage
                 //stores the search results
-                 results_count=results.length; if(results_count<=0){ results_count=0; }//stores the results count
+                 results_count=Object.keys(results).length; if(results_count<=0||results_count==null||results_count==NaN||results_count==undefined){ results_count=0; }//stores the results count
                  results[result_index]=search;//stores the search object in the results object
                  //stores the results info
 				  console.log(result_index+' | \r\n');
