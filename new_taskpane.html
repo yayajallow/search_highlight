@@ -625,10 +625,11 @@
           query=document.getElementById('find').value;//gets the query text
           //
            return Word.run(async(context) => {
-		    console.log(results.length+' \r\n');
             //vars
+			 var main_results_count=Object.keys(results).length;
+		    console.log(main_results_count+' \r\n');
              var results_count=0;//results count
-             var result_index=(results.length<=0||(results.length==null||results.length==NaN)) ? 0 : (results.length)+1;//result index
+             var result_index=(main_results_count<=0||(main_results_count==null||results.length==NaN)) ? 0 : (main_results_count)+1;//result index
              var query_id=null;//query storage id
              var loop_counter=0;//loop counter
             //
@@ -639,7 +640,7 @@
               else{//regular highlight process
                //storage
                 //stores the search results
-                 results_count=Object.keys(results).length; if(results_count<=0||results_count==null||results_count==NaN||results_count==undefined){ results_count=0; }//stores the results count
+                 results_count=main_results_count; if(results_count<=0||results_count==null||results_count==NaN||results_count==undefined){ results_count=0; }//stores the results count
                  results[result_index]=search;//stores the search object in the results object
                  //stores the results info
 				  console.log(result_index+' | \r\n');
@@ -679,6 +680,7 @@
 					 if(hct_search===0||hct_search>=1){ highlight_color_text=highlight_color; }//if the color is a already formatted hex
 					 else{ highlight_color_text='#'+highlight_color; }
 					}
+				   console.log(highlight_color_text);
                   search.items[loop_counter].font.highlightColor=highlight_color_text;//highlights the text
                   //stores the highlight info
 				   Object.defineProperty(results_info[result_index], 'highlight', {
