@@ -625,6 +625,7 @@
           query=document.getElementById('find').value;//gets the query text
           //
            return Word.run(async(context) => {
+		    console.log(results.length+' \r\n');
             //vars
              var results_count=0;//results count
              var result_index=(results.length<=0||(results.length==null||results.length==NaN)) ? 0 : (results.length)+1;//result index
@@ -680,9 +681,13 @@
 					}
                   search.items[loop_counter].font.highlightColor=highlight_color_text;//highlights the text
                   //stores the highlight info
-                   results_info[result_index]['highlight']['is']=true;
-                   results_info[result_index]['highlight']['color']=highlight_color;
-                   results_info[result_index]['highlight']['name']=highlight_name;
+				   Object.defineProperty(results_info[result_index], 'highlight', {
+				    value: { 'is':true, 'color':highlight_color, 'name':highlight_name },
+					writable: true, enumerable: false, configurable:true
+				   });
+                   //results_info[result_index]['highlight']['is']=true;
+                   //results_info[result_index]['highlight']['color']=highlight_color;
+                   //results_info[result_index]['highlight']['name']=highlight_name;
                  }
                }
             return context.sync();//syncs the document
