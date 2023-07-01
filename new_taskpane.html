@@ -627,7 +627,7 @@
            return Word.run(async(context) => {
             //vars
              var results_count=0;//results count
-             var result_index=(results.length<=0) ? 0 : (results.length)+1;//result index
+             var result_index=(results.length<=0||(results.length==null||results.length==NaN)) ? 0 : (results.length)+1;//result index
              var query_id=null;//query storage id
              var loop_counter=0;//loop counter
             //
