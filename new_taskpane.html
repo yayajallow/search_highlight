@@ -672,10 +672,10 @@
 				   var highlight_color_text=null;//highlight text
 				    var _text_start=null; var _text_end=null;//text start and end
 				   var hct_search=highlight_color.search('rgb');//searches for the rgb
-				    if(hct_search==-1||(hct_search===0)==true){//if the color is rgb
+				    if(hct_search!=-1&&((hct_search===0)==true||hct_search>=1)){//if the color is rgb
 					 highlight_color_text='rgba('+highlight_color+',1)';//formats the text
 					}
-					else{//regular hex
+					elseif(hct_search!=-1){//regular hex
 					 hct_search=highlight_color.search('#');//searches for the hex start
 					 if(hct_search===0||hct_search>=1){ highlight_color_text=highlight_color; }//if the color is a already formatted hex
 					 else{ highlight_color_text='#'+highlight_color; }
