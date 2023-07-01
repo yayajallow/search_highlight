@@ -641,8 +641,9 @@
                  results_count=results.length; if(results_count<=0){ results_count=0; }//stores the results count
                  results[result_index]=search;//stores the search object in the results object
                  //stores the results info
-                  results_info[result_index]['results']=results_count;//stores the results counts
-                  results_info[result_index]['searched']=true;//stores the searched flag
+				  console.log(result_index+' | \r\n');
+                  results_info[result_index]={ 'count':results_count, 'searched':true }//stores the results counts & searched flag
+				  console.log(results_info); console.log('\r\n');
                 //stores the query info
                  var query_count=queries.length; if(query_count<=0||query_count==null){ query_count=0; }//gets the query lenght
                  var query_index=(query_count==0) ? 0 : query_count;//gets the current query count id
