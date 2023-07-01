@@ -10,7 +10,8 @@
      /* Divs */
       /* Color Palette */
        #color_boxes{
-        display:inline-block;
+	    background:red;
+        display:inline_block !important;
         text-align:center;
         width:auto;
        }
@@ -34,7 +35,7 @@
          #color_boxes .color_line .last_row{ }
         /* Palette */
          #color_boxes #color_palette{
-          margin:-5px 1px 1px 1px;
+          margin:28px 1px 1px 1px;
           padding:2px;
           position:absolute;
            left:20%;
@@ -44,6 +45,7 @@
          #color_boxes #color_selector{
           text-align:center;
           margin:2px 2px;
+		  width:auto;
          }
           #color_boxes #color_selector:hover ul{ display:block !important; }
           #color_boxes .color_selector .color_selector_box{
@@ -60,7 +62,7 @@
            vertical-align:top;
           }
       /* Options */
-       #op{
+       #options{
         border:0px dotted rgba(181,181,181, 1);
          border-bottom-width:1px;
          border-top-width:1px;
@@ -68,20 +70,20 @@
         padding:3px 2px 3px 2px;
         text-align:center;
        }
-        #op div{ display:inline-block; }
-        #op .clear{/* Clear Button */
-         display:inline-block;
+        #options div{ display:inline-block; }
+        #options .clear{/* Clear Button */
+         display:inline-block !important;
         }
-         .op .clear #clear_button{ height:21px; margin-top:-7.5px !important; vertical-align:top; }
-         .op .clear .dropdown ul{ margin-top:14px; }
-        #op .color_bx{/* Color Box */
+         #options .clear #clear_button{ height:21px; margin-top:-7.5px !important; vertical-align:top; }
+         #options .clear .dropdown ul{ margin-top:14px; }
+        #options .color_bx{/* Color Box */
         }
-         #op .color_bx .show_bx{
+         #options .color_bx .show_bx{
           border:1px solid rgba(0,0,0, 1);
           hegiht:5px;
           width:15px;
          }
-         #op .color_bx .preview{
+         #options .color_bx .preview{
           border:1px solid rgba(0,0,0, 1);
           hegiht:3px;
           width:9px;
