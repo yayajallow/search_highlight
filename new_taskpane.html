@@ -637,10 +637,10 @@
                //storage
                 //stores the search results
                  results_count=results.length; if(results_count<=0){ results_count=0; }//stores the results count
-                 results[results_index]=search;//stores the search object in the results object
+                 results[result_index]=search;//stores the search object in the results object
                  //stores the results info
-                  results_info[results_index].results=results_count;//stores the results counts
-                  results_info[results_index].searched=true;//stores the searched flag
+                  results_info[result_index].results=results_count;//stores the results counts
+                  results_info[result_index].searched=true;//stores the searched flag
                 //stores the query info
                  var query_count=queries.length; if(query_count<=0||query_count==null){ query_count=0; }//gets the query lenght
                  var query_index=(query_count==0) ? 0 : query_count;//gets the current query count id
@@ -677,9 +677,9 @@
 					}
                   search.items[loop_counter].font.highlightColor=highlight_color_text;//highlights the text
                   //stores the highlight info
-                   results_info[results_index].highlight.is=true;
-                   results_info[results_index].highlight.color=highlight_color;
-                   results_info[results_index].highlight.name=highlight_name;
+                   results_info[result_index].highlight.is=true;
+                   results_info[result_index].highlight.color=highlight_color;
+                   results_info[result_index].highlight.name=highlight_name;
                  }
                }
             return context.sync();//syncs the document
