@@ -680,9 +680,9 @@
 					}
                   search.items[loop_counter].font.highlightColor=highlight_color_text;//highlights the text
                   //stores the highlight info
-                   results_info[result_index].highlight.is=true;
-                   results_info[result_index].highlight.color=highlight_color;
-                   results_info[result_index].highlight.name=highlight_name;
+                   results_info[result_index]['highlight']['is']=true;
+                   results_info[result_index]['highlight']['color']=highlight_color;
+                   results_info[result_index]['highlight']['name']=highlight_name;
                  }
                }
             return context.sync();//syncs the document
