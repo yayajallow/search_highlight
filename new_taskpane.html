@@ -632,7 +632,7 @@
              var query_id=null;//query storage id
              var loop_counter=0;//loop counter
              const search=context.document.body.search(query);//searches the document for the query text & returns the search as an object
-			 var main_results_count=Object.keys(search).length;
+			 var main_results_count=search.length;
 		    console.log(main_results_count+' +=+ \r\n');
              //determines what to do
               if(un_highlight==1){//unhighlighting process
@@ -686,9 +686,9 @@
 				   results_info[result_index]['results'][r_search_index]={ 'query':query, 'highlight':{ 'is':true, 'color':highlight_color, 'name':highlight_name } };
                  }
                }
-				    console.log(results_info); console.log(' ------------------ results info ----------------');
             return context.sync();//syncs the document
            });
+				    console.log(results_info); console.log(' ------------------ results info ----------------');
        }
 
       //test function
