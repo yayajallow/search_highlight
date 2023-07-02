@@ -128,7 +128,7 @@
     <!-- search form -->
      <div id='search_form' action='' method='get'>
       <input type='text' name='find' id='find' placeholder='search for...' value=''>
-      <input type='submit' id='search_button' class='button' value='search'>
+      <input type='submit' id='search_button' class='button' onkeypress='function _enter(event){ if(event.keyCode==13){ search({}); } };' value='search'>
      </div>
 
     <!-- options -->
@@ -469,6 +469,7 @@
                if(typeof(s_color)=='string'){
                 ct_search=s_color.length;//gets the string length
                 if(ct_search==6){ s_color_type='hex'; }//sets the color type to hex
+				document.getElementById('color_selector').setAttribute('selected',true);//sets the set color attribute
                }
               }
               else{ s_color_type='rgb'; }
@@ -622,6 +623,25 @@
          var un_highlight=(attrs['unhighlight']) || (attrs['un']) || null;
 		 var r_search_index=0;//search counter
         //
+		 //highlight color selection
+		  var is_set=document.getElementById('color_selector').getAttribute('selected');
+		  var chosen_color=false;//chosen color
+		  var new_color=false;//new color flag
+		   if(is_set==true||is_set=='true'){ chosen_color=true; }//selected color flag
+		  //determines if a new color is need
+		   var query_results_index=queries[query];//gets the query key to determines if it was already searched
+		   var query_exists=queries[query_results_index];//gets the query info if stored
+		    if(query_exists!=null&&query_exists!=NaN&&(query_exists===0)==false){//if the query exists
+			 highlight_color=results_info[query_results_index][0]['highlight']['color'];//gets the already set highlight color
+			}
+			else{
+			 var new_color=true;//sets the new color flag
+			 var nx_color=((Object.keys(colors))[( Math.random() * (Object.keys(colors).length) )]);//selects a new key index
+			 var next_color=colors[nx_color];//gets the new next color
+			 _colors({ 'obj':'set', 'set type':'highlight', 'do':'change', 'color':next_color, 'color name':nx_color});//changes the highlight color
+			}
+		  if(chosen_color==false||new_color==true){//if no color was selected
+		  }
          //performs the search
           query=document.getElementById('find').value;//gets the query text
           //
@@ -646,6 +666,7 @@
                  results[result_index]=search;//stores the search object in the results object
                  //stores the results info
                   results_info[result_index]={ 'count':results_count, 'searched':true, 'results':{} }//stores the results counts & searched flag
+				  queries[query]['highlight_color']=highlight_color;//stores the query highlight color
 				  //console.log(result_index+' | \r\n');
 				  //console.log(results_info); console.log('\r\n');
                 //stores the query info
