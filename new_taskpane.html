@@ -674,7 +674,7 @@
 				   var highlight_color_text=null;//highlight text
 				    var _text_start=null; var _text_end=null;//text start and end
 				   var hct_search=highlight_color.search('rgb');//searches for the rgb
-				    if(hct_search!=-1&&((hct_search===0)==true||hct_search>=1)){//if the color is rgb
+				    if(hct_search!=-1&&(((hct_search===0)==true&&hct_search!=null)||hct_search>=1)){//if the color is rgb
 					 highlight_color_text='rgba('+highlight_color+',1)';//formats the text
 					}
 					else{//regular hex
@@ -685,10 +685,11 @@
 				   console.log(highlight_color_text+' -_- \r\n'); console.log(hct_search);
                   search.items[loop_counter].font.highlightColor=highlight_color_text;//highlights the text
                   //stores the highlight info
-				   Object.defineProperty(results_info[result_index]['results'][r_search_index], 'highlight', {
+				   results_info[result_index]['results'][r_search_index]={ 'query':query, 'highlight':{ 'is':true, 'color':highlight_color, 'name':highlight_name } };
+				   /*Object.defineProperty(results_info[result_index]['results'][r_search_index], 'highlight', {
 				    value: { 'is':true, 'color':highlight_color, 'name':highlight_name },
 					writable: true, enumerable: false, configurable:true
-				   });
+				   });*/
 				    //console.log(results_info);
                    //results_info[result_index]['highlight']['is']=true;
                    //results_info[result_index]['highlight']['color']=highlight_color;
