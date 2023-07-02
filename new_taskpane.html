@@ -620,7 +620,7 @@
          var query=null;//search query
          const finds=[];//results container
          var un_highlight=(attrs['unhighlight']) || (attrs['un']) || null;
-		 var search_counter=0;//search counter
+		 var r_search_index=0;//search counter
         //
          //performs the search
           query=document.getElementById('find').value;//gets the query text
@@ -632,7 +632,8 @@
              var query_id=null;//query storage id
              var loop_counter=0;//loop counter
              const search=context.document.body.search(query);//searches the document for the query text & returns the search as an object
-			 var main_results_count=search.length;
+			 var main_results_count=Object.keys(search).length;
+		    console.log(search); console.log(' -x- \r\n');
 		    console.log(main_results_count); console.log(' -_- \r\n');
 		    console.log(main_results_count+' +=+ \r\n');
              //determines what to do
@@ -665,7 +666,7 @@
                }
               //process the results & highlights the text
                for(loop_counter=0; loop_counter<search.items.length; loop_counter++){//loops through results
-			    var r_search_index=search_counter+loop_counter;//search index counter
+			    var r_search_index++;//search index counter
                 //highlights or unhighlights the text
                  if(un_highlight==1){//unhighlights the text
                  }
