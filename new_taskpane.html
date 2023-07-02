@@ -633,6 +633,7 @@
              var loop_counter=0;//loop counter
              const search=context.document.body.search(query);//searches the document for the query text & returns the search as an object
 			 var main_results_count=search.length;
+		    console.log(main_results_count); console.log(' -_- \r\n');
 		    console.log(main_results_count+' +=+ \r\n');
              //determines what to do
               if(un_highlight==1){//unhighlighting process
@@ -647,8 +648,8 @@
 				  //console.log(result_index+' | \r\n');
 				  //console.log(results_info); console.log('\r\n');
                 //stores the query info
-                 var query_count=Object.keys(queries).length; if(query_count<=0||query_count==null){ query_count=0; }//gets the query lenght
-                 var query_index=(query_count==0) ? 0 : query_count;//gets the current query count id
+                 var query_count=Object.keys(queries).length; if(query_count<=0||query_count==null||query_count==NaN){ query_count=0; }//gets the query lenght
+                 var query_index=(query_count===0) ? 0 : query_count;//gets the current query count id
                  queries[(query)]=query_index;//stores the current query count & text
                   console.log(queries); console.log(' --------- queries --------- \r\n');
               }
@@ -686,9 +687,9 @@
 				   results_info[result_index]['results'][r_search_index]={ 'query':query, 'highlight':{ 'is':true, 'color':highlight_color, 'name':highlight_name } };
                  }
                }
+		    console.log(results_info); console.log(' ------------------ results info ----------------');
             return context.sync();//syncs the document
            });
-				    console.log(results_info); console.log(' ------------------ results info ----------------');
        }
 
       //test function
