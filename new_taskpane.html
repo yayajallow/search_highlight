@@ -630,7 +630,7 @@
 		   if(is_set==true||is_set=='true'){ chosen_color=true; }//selected color flag
 		  //determines if a new color is need
 		   var query_results_index=queries[query];//gets the query key to determines if it was already searched
-		   var query_exists=queries[query_results_index];//gets the query info if stored
+		   var query_exists=queries[query];//gets the query info if stored
 		    if(query_exists!=null&&query_exists!=NaN&&(query_exists===0)==false){//if the query exists
 			 highlight_color=results_info[query_results_index][0]['highlight']['color'];//gets the already set highlight color
 			}
@@ -666,7 +666,6 @@
                  results[result_index]=search;//stores the search object in the results object
                  //stores the results info
                   results_info[result_index]={ 'count':results_count, 'searched':true, 'results':{} }//stores the results counts & searched flag
-				  queries[query]['highlight_color']=highlight_color;//stores the query highlight color
 				  //console.log(result_index+' | \r\n');
 				  //console.log(results_info); console.log('\r\n');
                 //stores the query info
