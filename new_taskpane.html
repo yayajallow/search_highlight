@@ -127,7 +127,7 @@
    <body>
     <!-- search form -->
      <div id='search_form' action='' method='get'>
-      <input type='text' name='find' id='find' placeholder='search for...' onkeypress='function _enter(event){ if(event.keyCode==13){ search({}); } };' value=''>
+      <input type='text' name='find' id='find' placeholder='search for...' onkeypress='function _enter(event){ if(event.keyCode==13){ search(); } };' value=''>
       <input type='submit' id='search_button' class='button' value='search'>
      </div>
 
@@ -624,23 +624,27 @@
 		 var r_search_index=0;//search counter
         //
 		 //highlight color selection
-		  var is_set=document.getElementById('color_selector').getAttribute('selected');
-		  var chosen_color=false;//chosen color
+		  var is_set_p=document.getElementById('color_selector');
+		   if(is_set_p!=null&&is_set_p!=NaN&&( (is_set_p===0)==flase )){ is_set=document.getElementById('color_selector').getAttribute('selected'); }
+		  var chosen_color=(is_set==true||is_set=='true') ? true: false;//chosen color
 		  var new_color=false;//new color flag
-		   if(is_set==true||is_set=='true'){ chosen_color=true; }//selected color flag
 		  //determines if a new color is need
+		   var new_color=null; var nx_color=null; var next_color=null;//
 		   var query_results_index=queries[query];//gets the query key to determines if it was already searched
 		   var query_exists=queries[query];//gets the query info if stored
 		    if(query_exists!=null&&query_exists!=NaN&&(query_exists===0)==false){//if the query exists
 			 highlight_color=results_info[query_results_index][0]['highlight']['color'];//gets the already set highlight color
 			}
 			else{
-			 var new_color=true;//sets the new color flag
-			 var nx_color=((Object.keys(colors))[( Math.random() * (Object.keys(colors).length) )]);//selects a new key index
-			 var next_color=colors[nx_color];//gets the new next color
+			 new_color=true;//sets the new color flag
+			 nx_color=((Object.keys(colors))[( Math.random() * (Object.keys(colors).length) )]);//selects a new key index
+			 next_color=colors[nx_color];//gets the new next color
 			 _colors({ 'obj':'set', 'set type':'highlight', 'do':'change', 'color':next_color, 'color name':nx_color});//changes the highlight color
 			}
-		  if(chosen_color==false||new_color==true){//if no color was selected
+		  if(chosen_color==false||new_color!=true){//if no color was selected
+		   nx_color=((Object.keys(colors))[( Math.random() * (Object.keys(colors).length) )]);//selects a new key index
+		   next_color=colors[nx_color];//gets the new next color
+		   _colors({ 'obj':'set', 'set type':'highlight', 'do':'change', 'color':next_color, 'color name':nx_color});//changes the highlight color		   
 		  }
          //performs the search
           query=document.getElementById('find').value;//gets the query text
@@ -648,11 +652,11 @@
            return Word.run(async(context) => {
             //vars
              var results_count=0;//results count
-             var result_index=(main_results_count<=0||(main_results_count==null||results.length==NaN)) ? 0 : (main_results_count);//result index
              var query_id=null;//query storage id
              var loop_counter=0;//loop counter
              const search=context.document.body.search(query);//searches the document for the query text & returns the search as an object
 			 var main_results_count=Object.keys(search).length;
+             var result_index=(main_results_count<=0||(main_results_count==null||results.length==NaN)) ? 0 : (main_results_count);//result index
 		    console.log(search); console.log(' -x- \r\n');
 		    console.log(main_results_count); console.log(' -_- \r\n');
 		    console.log(main_results_count+' +=+ \r\n');
