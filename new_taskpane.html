@@ -448,6 +448,15 @@
           document.getElementById('color_boxes').innerHTML=color_boxes;
  
      //functions
+	   function _empty(attrs){//empty function
+	    //variables
+		 var variable=(attrs[0]) || (attrs['variable']) || (attrs['var']) || null;//variable
+		  if(typeof(attrs)!='object'){ variable=attrs; }//default to the whole attribute variable if only one provided
+		 var is_empty=false;//empty variable holder
+		//
+		 if(variable===null || variable===NaN || variable===undefined || ((variable===0)==false) ){ is_empty=true; }
+		 else{ is_empty=false; }
+	   }
        function _colors(attrs){//library color handler
         //variables
          var obj=(attrs.obj) || (attrs.objective) || null;//objective
@@ -625,7 +634,7 @@
         //
 		 //highlight color selection
 		  var is_set_p=document.getElementById('color_selector');
-		   if(is_set_p!=null&&is_set_p!=NaN&&( (is_set_p===0)==flase )){ is_set=document.getElementById('color_selector').getAttribute('selected'); }
+		   if(is_set_p!=null&&is_set_p!=NaN&&( (is_set_p===0)==false )){ is_set=document.getElementById('color_selector').getAttribute('selected'); }
 		  var chosen_color=(is_set==true||is_set=='true') ? true: false;//chosen color
 		  var new_color=false;//new color flag
 		  //determines if a new color is need
