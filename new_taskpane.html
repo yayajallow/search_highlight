@@ -157,7 +157,7 @@
        <li id='clear_dd' class='dropdown'>
         <button id='clear_button'>clear</button>
         <ul id='clear_dd_list' class='list'>
-         <li id='clear_all' onclick='clear_dx({ all:true })'>clear all</li>
+         <li id='clear_all' class='remove' onclick='clear_dx({ all:true })'>clear all</li>
         </ul>
        </li>
       </div>
@@ -663,9 +663,9 @@
              var results_count=0;//results count
              var query_id=null;//query storage id
              var loop_counter=0;//loop counter
-             const search=context.document.body.search(query);//searches the document for the query text & returns the search as an object
+             var search=context.document.body.search(query);//searches the document for the query text & returns the search as an object
 			 var main_results_count=Object.keys(search).length;
-             var result_index=(main_results_count<=0||(main_results_count==null||results.length==NaN)) ? 0 : (main_results_count);//result index
+             var result_index=(main_results_count<=0||(main_results_count==null||results.length==NaN)) ? 0 : (result_index)+1;//result index
 		    console.log(search); console.log(' -x- \r\n');
 		    console.log(main_results_count); console.log(' -_- \r\n');
 		    console.log(main_results_count+' +=+ \r\n');
@@ -679,8 +679,6 @@
                  results[result_index]=search;//stores the search object in the results object
                  //stores the results info
                   results_info[result_index]={ 'count':results_count, 'searched':true, 'results':{} }//stores the results counts & searched flag
-				  //console.log(result_index+' | \r\n');
-				  //console.log(results_info); console.log('\r\n');
                 //stores the query info
                  var query_count=Object.keys(queries).length; if(query_count<=0||query_count==null||query_count==NaN){ query_count=0; }//gets the query lenght
                  var query_index=(query_count===0) ? 0 : query_count;//gets the current query count id
