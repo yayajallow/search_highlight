@@ -664,34 +664,33 @@
              var results_count=0;//results count
              var query_id=null;//query storage id
              var loop_counter=0;//loop counter
-			  console.log(' version 14 \r\n');
              var search=context.document.body.search(query);//searches the document for the query text & returns the search as an object
-			  await context.sync();//syncs the document
 			  console.log(' version 15 \r\n');
-			 var main_results_count=search.items.length;
-             var result_index=(main_results_count<=0||(main_results_count==null||results.length==NaN)) ? 0 : (result_index)+1;//result index
-		    console.log(search); console.log(' -x- \r\n');
-		    console.log(main_results_count); console.log(' -_- \r\n');
-		    console.log(main_results_count+' +=+ \r\n');
-             //determines what to do
-              if(un_highlight==1){//unhighlighting process
-              }
-              else{//regular highlight process
-               //storage
-                //stores the search results
-                 results_count=main_results_count; if(results_count<=0||results_count==null||results_count==NaN||results_count==undefined){ results_count=0; }//stores the results count
-                 results[result_index]=search;//stores the search object in the results object
-                 //stores the results info
-                  results_info[result_index]={ 'count':results_count, 'searched':true, 'results':{} }//stores the results counts & searched flag
-                //stores the query info
-                 var query_count=Object.keys(queries).length; if(query_count<=0||query_count==null||query_count==NaN){ query_count=0; }//gets the query lenght
-                 var query_index=(query_count===0) ? 0 : query_count;//gets the current query count id
-                 queries[(query)]=query_index;//stores the current query count & text
-                  console.log(queries); console.log(' --------- queries --------- \r\n');
-              }
              search.load('font');//loads the font property
              await context.sync();//syncs the document
              //
+			  //
+			   var main_results_count=search.items.length;
+               var result_index=(main_results_count<=0||(main_results_count==null||results.length==NaN)) ? 0 : (result_index)+1;//result index
+		       console.log(search); console.log(' -x- \r\n');
+		       console.log(main_results_count); console.log(' -_- \r\n');
+		       console.log(main_results_count+' +=+ \r\n');
+               //determines what to do
+                if(un_highlight==1){//unhighlighting process
+                }
+                else{//regular highlight process
+                 //storage
+                  //stores the search results
+                   results_count=main_results_count; if(results_count<=0||results_count==null||results_count==NaN||results_count==undefined){ results_count=0; }//stores the results count
+                   results[result_index]=search;//stores the search object in the results object
+                   //stores the results info
+                    results_info[result_index]={ 'count':results_count, 'searched':true, 'results':{} }//stores the results counts & searched flag
+                  //stores the query info
+                   var query_count=Object.keys(queries).length; if(query_count<=0||query_count==null||query_count==NaN){ query_count=0; }//gets the query lenght
+                   var query_index=(query_count===0) ? 0 : query_count;//gets the current query count id
+                   queries[(query)]=query_index;//stores the current query count & text
+                    console.log(queries); console.log(' --------- queries --------- \r\n');
+                }
               //tracker task
                if(un_highlight==1){//unhighlight
                }
