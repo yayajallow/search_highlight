@@ -336,7 +336,7 @@
           'snow': { 'index':'', 'o_index':'', 'hex':'FFFAFA', 'rgb':'255,250,250', 'name':'snow' },
           'honeydew': { 'index':'', 'o_index':'', 'hex':'F0FFF0', 'rgb':'240,255,240', 'name':'honeydew' },
           'mint_cream': { 'index':'', 'o_index':'', 'hex':'F5FFFA', 'rgb':'245,255,250', 'name':'mint cream' },
-          'azure': { 'index':'', 'o_index':'', 'hex':'F0FFFF', 'rgb':'240,255,255', 'name':'azure' },
+          'azure': { 'index':'', 'o_ index':'', 'hex':'F0FFFF', 'rgb':'240,255,255', 'name':'azure' },
           'alice_blue': { 'index':'', 'o_index':'', 'hex':'F0F8FF', 'rgb':'240,248,255', 'name':'alice blue' },
           'ghost_white': { 'index':'', 'o_index':'', 'hex':'F8F8FF', 'rgb':'248,248,255', 'name':'ghost white' },
           'white_smoke': { 'index':'', 'o_index':'', 'hex':'F5F5F5', 'rgb':'245,245,245', 'name':'white smoke' },
@@ -357,7 +357,7 @@
           'light_golden_rod_yellow': { 'index':'', 'o_index':'FAFAD2', 'hex':'250,250,210', 'rgb':'', 'name':'light golden rod yellow' },
           'papaya_whip': { 'index':'', 'o_index':'', 'hex':'FFEFD5', 'rgb':'255,239,213', 'name':'papaya whip' },
           'moccasin': { 'index':'', 'o_index':'', 'hex':'FFE4B5', 'rgb':'255,228,181', 'name':'moccasin' },
-          'peach_puff': { 'index':'', 'o_index':'', 'hex':'FFDAB9', 'rgb':'255,218,185', 'name':'peach_puff' },
+          'peach_puff': { 'index':'', 'o_index':'', 'hex':'FFDAB9', 'rgb':'255,218,185', 'name':'peach puff' },
           'pale_golden_rod': { 'index':'', 'o_index':'', 'hex':'EEE8AA', 'rgb':'238,232,170', 'name':'pale golden rod' },
           'khaki': { 'index':'', 'o_index':'', 'hex':'F0E68C', 'rgb':'240,230,140', 'name':'khaki' },
           'dark_khaki': { 'index':'', 'o_index':'', 'hex':'BDB76B', 'rgb':'189,183,107', 'name':'dark khaki' },
@@ -665,7 +665,7 @@
              var query_id=null;//query storage id
              var loop_counter=0;//loop counter
              var search=context.document.body.search(query);//searches the document for the query text & returns the search as an object
-			 var main_results_count=Object.keys(search).length;
+			 var main_results_count=search.length;
              var result_index=(main_results_count<=0||(main_results_count==null||results.length==NaN)) ? 0 : (result_index)+1;//result index
 		    console.log(search); console.log(' -x- \r\n');
 		    console.log(main_results_count); console.log(' -_- \r\n');
