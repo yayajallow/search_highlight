@@ -688,7 +688,13 @@
                   //stores the query info
                    var query_count=Object.keys(queries).length; if(query_count<=0||query_count==null||query_count==NaN){ query_count=0; }//gets the query lenght
                    var query_index=(query_count===0) ? 0 : query_count;//gets the current query count id
-                   queries[(query)]=query_index;//stores the current query count & text
+                   //stores the current query count & text
+				    var query_ex=queries.hasOwnProperty(query);//checks if the query has already been stored
+					if(query_ex==true){//if the query has already been stored
+					 var old_query_index=queries[(query)];
+					 var queries[(query)]={ old_query_index, query_index }//stores the query indexes
+					}
+					else{ queries[(query)]=query_index; }//stores the query value
                     console.log(queries); console.log(' --------- queries --------- \r\n');
                 }
               //tracker task
