@@ -665,13 +665,13 @@
              var query_id=null;//query storage id
              var loop_counter=0;//loop counter
              var search=context.document.body.search(query);//searches the document for the query text & returns the search as an object
-			  console.log(' version 16 \r\n');
+			  console.log(' version 17 \r\n');
              search.load('font');//loads the font property
              await context.sync();//syncs the document
              //
 			  //
 			   var main_results_count=search.items.length;
-               var result_index=(main_results_count<=0||(main_results_count==null||results.length==NaN)) ? 0 : results.length;//result index
+               var result_index=(main_results_count<=0||(main_results_count==null||results.length==NaN)) ? 0 : Object.keys(results).length;//result index
 		       console.log(search); console.log(' -x- \r\n');
 		       console.log(main_results_count); console.log(' -_- \r\n');
 		       console.log(main_results_count+' +=+ \r\n');
