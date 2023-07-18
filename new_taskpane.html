@@ -631,7 +631,7 @@
          const finds=[];//results container
          var un_highlight=(attrs['unhighlight']) || (attrs['un']) || null;
 		 var r_search_index=0;//search counter
-		 var result_index=0;//result index counter
+		 var result_index=-1;//result index counter
         //
 		 //highlight color selection
 		  var is_set_p=document.getElementById('color_selector');
@@ -665,8 +665,9 @@
              var query_id=null;//query storage id
              var loop_counter=0;//loop counter
              var search=context.document.body.search(query);//searches the document for the query text & returns the search as an object
-			 var main_results_count=search.length;
+			 var main_results_count=search.items.length;
              var result_index=(main_results_count<=0||(main_results_count==null||results.length==NaN)) ? 0 : (result_index)+1;//result index
+		    console.log(' version 12 \r\n');
 		    console.log(search); console.log(' -x- \r\n');
 		    console.log(main_results_count); console.log(' -_- \r\n');
 		    console.log(main_results_count+' +=+ \r\n');
