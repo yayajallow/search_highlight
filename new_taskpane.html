@@ -696,11 +696,11 @@
 					 //
 					  if(old_query_index_type=='string'){
 					   queries[(query)]=[];
-					    queries.push(old_query_index, query_index);
+					    queries[(query)].push(old_query_index, query_index);
 					    //(queries.(query))[]=old_query_index;
 					    //(queries.(query))[]=query_index;
 					  }
-					  else{ queries.push(query_index); }
+					  else{ queries[(query)].push(query_index); }
 					}
 					else{ queries[(query)]=query_index; }//stores the query value
                     console.log(queries); console.log(' --------- queries --------- \r\n');
