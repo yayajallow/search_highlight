@@ -696,8 +696,9 @@
 					 //
 					  if(old_query_index_type=='string'){
 					   queries[(query)]=[];
-					    (queries.(query))[]=old_query_index;
-					    (queries.(query))[]=query_index;
+					    queries.push(old_query_index, query_index);
+					    //(queries.(query))[]=old_query_index;
+					    //(queries.(query))[]=query_index;
 					  }
 					  else{ queries[(query)][]=query_index; }
 					  
