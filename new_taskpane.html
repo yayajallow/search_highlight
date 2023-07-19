@@ -665,7 +665,7 @@
              var query_id=null;//query storage id
              var loop_counter=0;//loop counter
              var search=context.document.body.search(query);//searches the document for the query text & returns the search as an object
-			  console.log(' version 17 \r\n');
+			  console.log(' version 18 \r\n');
              search.load('font');//loads the font property
              await context.sync();//syncs the document
              //
@@ -691,8 +691,8 @@
                    //stores the current query count & text
 				    var query_ex=queries.hasOwnProperty(query);//checks if the query has already been stored
 					if(query_ex==true){//if the query has already been stored
-					 var old_query_index=queries[(query)];
-					 var queries[(query)]={ old_query_index, query_index }//stores the query indexes
+					 //var old_query_index=queries[(query)];
+					 //var queries[(query)]={ old_query_index, query_index }//stores the query indexes
 					}
 					else{ queries[(query)]=query_index; }//stores the query value
                     console.log(queries); console.log(' --------- queries --------- \r\n');
