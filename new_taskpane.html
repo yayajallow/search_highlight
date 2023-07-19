@@ -700,7 +700,7 @@
 					    //(queries.(query))[]=old_query_index;
 					    //(queries.(query))[]=query_index;
 					  }
-					  else{ queries[(query)][]=query_index; }
+					  else{ queries.push(query_index); }
 					  
 					 queries[(query)]=[ old_query_index, query_index }//stores the query indexes
 					}
