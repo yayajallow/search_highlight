@@ -686,7 +686,7 @@
                    //stores the results info
                     results_info[result_index]={ 'count':results_count, 'searched':true, 'results':{} }//stores the results counts & searched flag
                   //stores the query info
-                   var query_count=Object.keys(queries).length; if(query_count<=0||query_count==null||query_count==NaN){ query_count=0; }//gets the query lenght
+                   var query_count=Object.keys(results_info).length; if(query_count<=0||query_count==null||query_count==NaN){ query_count=0; }//gets the query lenght
                    var query_index=(query_count===0) ? 0 : query_count;//gets the current query count id
                    //stores the current query count & text
 				    var query_ex=queries.hasOwnProperty(query);//checks if the query has already been stored
@@ -698,8 +698,6 @@
 					  if(old_query_index_type!='object'){
 					   queries[(query)]=[];
 					    queries[(query)].push(old_query_index, query_index);
-					    //(queries.(query))[]=old_query_index;
-					    //(queries.(query))[]=query_index;
 					  }
 					  else{ queries[(query)].push(query_index); }
 					}
