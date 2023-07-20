@@ -665,7 +665,7 @@
              var query_id=null;//query storage id
              var loop_counter=0;//loop counter
              var search=context.document.body.search(query);//searches the document for the query text & returns the search as an object
-			  console.log(' version 20 \r\n');
+			  console.log(' version 21 \r\n');
              search.load('font');//loads the font property
              await context.sync();//syncs the document
              //
@@ -695,7 +695,7 @@
 					 var old_query_index_type=typeof(old_query_index);
 					 //
 					   consloe.log('['+old_query_index_type+'] \r\n');
-					  if(old_query_index_type=='string'){
+					  if(old_query_index_type!='object'){
 					   queries[(query)]=[];
 					    queries[(query)].push(old_query_index, query_index);
 					    //(queries.(query))[]=old_query_index;
