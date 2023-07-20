@@ -371,7 +371,7 @@
         var highlight_color=defaults.highlight_color;
         var highlight_name=defaults.highlight_color_name;
        //search variables
-        var queries={};//search list
+        var queries={}; var query_info={};//search list
         const results={};//search result object
         const results_info={};//search results info object
 
@@ -665,7 +665,7 @@
              var query_id=null;//query storage id
              var loop_counter=0;//loop counter
              var search=context.document.body.search(query);//searches the document for the query text & returns the search as an object
-			  console.log(' version 23 \r\n');
+			  console.log(' version 24 \r\n');
              search.load('font');//loads the font property
              await context.sync();//syncs the document
              //
@@ -687,7 +687,7 @@
                     results_info[result_index]={ 'count':results_count, 'searched':true, 'results':{} }//stores the results counts & searched flag
                   //stores the query info
                    var query_count=Object.keys(results_info).length; if(query_count<=0||query_count==null||query_count==NaN){ query_count=0; }//gets the query lenght
-                   var query_index=(query_count===0) ? 0 : query_count;//gets the current query count id
+                   var query_index=(query_count===0) ? 0 : query_count-1;//gets the current query count id
                    //stores the current query count & text
 				    var query_ex=queries.hasOwnProperty(query);//checks if the query has already been stored
 					if(query_ex==true){//if the query has already been stored
@@ -709,7 +709,7 @@
                }
                else{//highlight
                 _task({ 'obj':'clear', 'clear obj':'add', 'query_id':query_index, 'query':query });//adds the search to the clear list
-                _task({ 'obj':'search', 'clear obj':'add', 'query_id':query_index, 'query':query });//adds the search to the search list
+                if(query_ex!=rtue){ _task({ 'obj':'search', 'clear obj':'add', 'query_id':query_index, 'query':query }); }//adds the search to the search list
                }
               //process the results & highlights the text
                for(loop_counter=0; loop_counter<search.items.length; loop_counter++){//loops through results
